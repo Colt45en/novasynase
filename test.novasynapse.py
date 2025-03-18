@@ -1,11 +1,10 @@
-import zlib
+import json
 import numpy as np
 import matplotlib.pyplot as plt
 import os # Add this import statement
-import json
-from flask import Flask, jsonify, request
 from sklearn.decomposition import PCA
-
+import zlib
+from flask import Flask, jsonify, request
 class NovaSynapse:
     def __init__(self, data_size=1000, memory_file="memory.json", compression_method="zlib"):
         """Initialize NovaSynapse with random data and selected compression method."""
@@ -26,7 +25,7 @@ class NovaSynapse:
             except json.JSONDecodeError:
                 print("Memory file is corrupted. Starting fresh.")
         else:
-            print("No previous memory found. Starting fresh.")
+            print("No previous memory found. Starting fresh."):
 
     def compress_data(self, factor=2):
         """Compress data using PCA or simple downsampling based on method."""
@@ -82,7 +81,7 @@ class NovaSynapse:
         plt.grid(True)
         plt.show()
 
-# Flask API for NovaSynapse
+ # Flask API for NovaSynapse
 the_app = Flask(__name__)
 
 @the_app.route('/')
