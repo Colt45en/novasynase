@@ -1,11 +1,9 @@
-name: novasync
-channels:
-  - conda-forge
-  - defaults
+name: test_env
 dependencies:
-  - python=3.10
-  - flake8
+  - python=3.9
+  - flask
   - pytest
   - numpy
+
 
 
