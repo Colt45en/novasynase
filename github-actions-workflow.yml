@@ -33,5 +33,5 @@ jobs:
       run: conda install --yes --file requirements.txt
 
     - name: Run tests
-      run: conda run -n test_env pytest  # Ensures tests run inside the Conda environment
+      run: pytest tests/
 
