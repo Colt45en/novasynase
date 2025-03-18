@@ -1,7 +1,7 @@
 import zlib
 import numpy as np
 import matplotlib.pyplot as plt
-import os
+import os  # Add this import statement
 import json
 from flask import Flask, jsonify, request
 from sklearn.decomposition import PCA
