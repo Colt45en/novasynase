@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 import os
 
 class Novasynapse:
@@ -11,6 +12,11 @@ class Novasynapse:
             print(f"Memory file {self.memory_file} exists.")
         else:
             print(f"Memory file {self.memory_file} does not exist.")
+
+    def plot_data(self):
+        plt.plot(self.original_data)
+        plt.legend()
+        plt.show()
 def _intel__(self, data_size):
     """
     Initializes the NovaSynapse instance.
