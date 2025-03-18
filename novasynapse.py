@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import json
+from sklearn.decomposition import PCA
 
 class Novasynapse:
     def __init__(self, data_size, memory_file):
@@ -15,6 +17,23 @@ class Novasynapse:
 
     def plot_data(self):
         plt.plot(self.original_data)
+        plt.legend()
+        plt.show()
+
+    def compress_data(self, components=2):
+        pca = PCA(n_components=components)
+        compressed_data = pca.fit_transform(self.original_data)
+        return compressed_data
+
+    def save_data(self, data, file_path):
+        with open(file_path, 'w') as file:
+            json.dump(data, file)
+
+    def plot_compression_performance(self):
+        plt.plot(self.compression_ratios, label='Compression Ratio', marker='o')
+        plt.xlabel("Iterations")
+        plt.ylabel("Compression Ratio")
+        plt.title("Compression Performance")
         plt.legend()
         plt.show()
 def _intel__(self, data_size):
