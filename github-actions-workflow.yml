@@ -7,30 +7,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v4  # Use the latest version
 
     - name: Set up Conda
       uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-update-conda: true  # Ensures Conda is up to date
+        activate-environment: test_env  # Auto-activates the environment
 
     - name: Set up Conda environment
       run: |
         conda config --add channels conda-forge
         conda config --add channels defaults
-        conda env create -f environment.yml
+        conda env update --file environment.yml --prune
+
+    - name: Cache Conda environment
+      uses: actions/cache@v3
+      with:
+        path: /usr/share/miniconda
+        key: conda-${{ runner.os }}-${{ hashFiles('environment.yml') }}
+        restore-keys: conda-${{ runner.os }}-
 
     - name: Install dependencies
       run: conda install --yes --file requirements.txt
 
     - name: Run tests
-      run: pytest
-        source $CONDA/etc/profile.d/conda.sh
-        conda activate novasync
-        conda install --yes flake8 pytest
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      run: conda run -n test_env pytest  # Ensures tests run inside the Conda environment
 
-    - name: Test with pytest
-      shell: bash -l {{0}}
-      run: |
-        conda activate novasync
-        pytest
