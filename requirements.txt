@@ -1,0 +1,9 @@
+flask
+numpy
+pytest
+pandas
+scipy
+scikit-learn
+flask-cors
+flask-sqlalchemy
+flask-socketio
