@@ -1,41 +1,18 @@
+import zlib
 import numpy as np
-import matplotlib.pyplot as plt
-import os
-import json
-from sklearn.decomposition import PCA
 
-class Novasynapse:
-    def __init__(self, data_size, memory_file):
-        self.original_data = np.random.rand(data_size)
-        self.memory_file = memory_file
+class NovaSynapse:
+    def __init__(self, original_data):
+        self.original_data = original_data
+        self.compressed_data = None
 
-    def check_memory_file(self):
-        if os.path.exists(self.memory_file):
-            print(f"Memory file {self.memory_file} exists.")
-        else:
-            print(f"Memory file {self.memory_file} does not exist.")
+    def compress_data(self):
+        compressed_data = zlib.compress(self.original_data.tobytes())
+        self.compressed_data = compressed_data
 
-    def plot_data(self):
-        plt.plot(self.original_data)
-        plt.legend()
-        plt.show()
-
-    def compress_data(self, components=2):
-        pca = PCA(n_components=components)
-        compressed_data = pca.fit_transform(self.original_data)
-        return compressed_data
-
-    def save_data(self, data, file_path):
-        with open(file_path, 'w') as file:
-            json.dump(data, file)
-
-    def plot_compression_performance(self):
-        plt.plot(self.compression_ratios, label='Compression Ratio', marker='o')
-        plt.xlabel("Iterations")
-        plt.ylabel("Compression Ratio")
-        plt.title("Compression Performance")
-        plt.legend()
-        plt.show()
+    def decompress_data(self):
+        decompressed_data = np.frombuffer(zlib.decompress(self.compressed_data), dtype=np.float64)
+        return decompressed_data
 def _intel__(self, data_size):
     """
     Initializes the NovaSynapse instance.
