@@ -1,3 +1,16 @@
+import numpy as np
+import os
+
+class Novasynapse:
+    def __init__(self, data_size, memory_file):
+        self.original_data = np.random.rand(data_size)
+        self.memory_file = memory_file
+
+    def check_memory_file(self):
+        if os.path.exists(self.memory_file):
+            print(f"Memory file {self.memory_file} exists.")
+        else:
+            print(f"Memory file {self.memory_file} does not exist.")
 def _intel__(self, data_size):
     """
     Initializes the NovaSynapse instance.
