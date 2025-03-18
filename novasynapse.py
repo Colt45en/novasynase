@@ -1,4 +1,4 @@
-def __decompress__(self, data_size):
+def _intel__(self, data_size):
     """
     Initializes the NovaSynapse instance.
     :param data_size: The number of data points to generate.
