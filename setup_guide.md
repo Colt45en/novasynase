@@ -1,6 +1,4 @@
-# Setting Up NovaSynapse
-
-## Creating a GitHub Repository
+Setting Up NovaS## Creating a GitHub Repository
 1. Go to GitHub and create a new repository named `NovaSynapse`.
 2. Set visibility to **Public** or **Private**.
 3. Clone the repository locally:
@@ -16,7 +14,9 @@ git push origin main
 ```
 
 ## Running NovaSynapse
-```bash
-pip install numpy matplotlib
+```bash 
+
+pip install numpy matplotlib 
 python novasynapse.py
+```## Running NovaSynapse
 ```
